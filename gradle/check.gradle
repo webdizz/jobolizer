@@ -20,11 +20,11 @@ subprojects {
         toolVersion = '5.1.3'
     }
 
-    apply plugin: 'cobertura'
+    apply plugin: 'net.saliman.cobertura'
     cobertura {
-        format = 'html'
-        includes = ['**/*.java', '**/*.groovy']
-        excludes = []
-        toolVersion = '2.0.3'
+        coverageFormats = ['html', 'xml']
+        coverageIncludes = []
+        coverageExcludes = []
+        coberturaVersion = '2.1'
     }
 }
