@@ -18,6 +18,7 @@ allprojects {
     }
 }
 
+apply from: file('gradle/ide.gradle')
 apply from: file('gradle/convention.gradle')
 apply from: file('gradle/maven.gradle')
 apply from: file('gradle/check.gradle')
