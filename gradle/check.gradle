@@ -20,11 +20,15 @@ subprojects {
         toolVersion = '5.1.3'
     }
 
+    // Cobertura
     apply plugin: 'net.saliman.cobertura'
+
     cobertura {
+        coverageDirs << file("build/classes/main")
         coverageFormats = ['html', 'xml']
-        coverageIncludes = []
-        coverageExcludes = []
-        coberturaVersion = '2.1'
+        coverageIgnoreTrivial = true
+//        coverageIncludes = [".*"]
+//        coverageExcludes = []
     }
+    check.dependsOn 'cobertura'
 }
