@@ -1,0 +1,42 @@
+ext.binTrayLabels = ['gradle-template']
+ext.binTrayLicenses = ['Apache-2.0']
+ext.binTrayRepo = 'maven'
+
+subprojects {
+    apply plugin: 'maven-publish'
+    apply plugin: 'com.jfrog.bintray'
+
+    ext.binTrayName = project.name
+    ext.binTrayDesc = project.description
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                if (plugins.hasPlugin('war')) {
+                    from components.web
+                } else {
+                    from components.java
+                }
+            }
+        }
+    }
+
+    bintray {
+        user = binTrayUser
+        key = binTrayKey
+        dryRun = false
+        publish = true
+        publications = ['mavenJava']
+        pkg {
+            repo = binTrayRepo
+            name = binTrayName
+            desc = binTrayDesc
+            websiteUrl = binTrayWebsiteUrl
+            vcsUrl = binTrayVcsUrl
+            licenses = binTrayLicenses
+            labels = binTrayLabels
+            publicDownloadNumbers = true
+        }
+    }
+}
+
