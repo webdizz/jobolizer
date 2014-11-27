@@ -1,5 +1,5 @@
-ext.binTrayLabels = ['gradle-template']
-ext.binTrayLicenses = ['Apache-2.0']
+ext.binTrayLabels = 'gradle-template'
+ext.binTrayLicenses = 'Apache-2.0'
 ext.binTrayRepo = 'maven'
 
 subprojects {
@@ -33,8 +33,8 @@ subprojects {
             desc = binTrayDesc
             websiteUrl = binTrayWebsiteUrl
             vcsUrl = binTrayVcsUrl
-            licenses = binTrayLicenses
-            labels = binTrayLabels
+            licenses = binTrayLicenses.tokenize(',')
+            labels = binTrayLabels.tokenize(',')
             publicDownloadNumbers = true
         }
     }
