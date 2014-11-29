@@ -6,9 +6,8 @@ CNAME="jenkins-test"
 CARGS="-i -t -d -p 8081:8080"
 IDFILE="/tmp/docker-jenkins.id"
 CCMD=""
-ARTIFACT="../jobizer-plugin/build/libs/jobizer.hpi"
+ARTIFACT="${WORKSPACE}/jobizer-plugin/build/libs/jobizer.hpi"
 JSTART_TIMEOUT=120
-
 
 docker pull $IMAGE
 
@@ -31,7 +30,7 @@ until [ $HTTP_STATUS -eq 200 ]; do
 	fi
 	sleep 5
 	HTTP_STATUS=`curl -s -o /dev/null -w "%{http_code}" ${JENKINS_URL}`
-	timer +=5
+	timer=$(($timer + 5))
 done
 
 echo "Getting jenkins-cli.jar"

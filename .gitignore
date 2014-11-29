@@ -64,4 +64,4 @@ atlassian-ide-plugin.xml
 .nbattrs
 
 #Jenkin-cli.jar
-bootstrap/jenkins-cli.jar
+jenkins-cli.jar
