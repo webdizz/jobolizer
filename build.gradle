@@ -40,5 +40,6 @@ subprojects {
         compile     "org.slf4j:slf4j-api:$slf4jApiVersion"
         testCompile "org.testng:testng:$testngVersion"
         testCompile "org.mockito:mockito-core:$mockitoVersion"
+        testCompile 'org.spockframework:spock-core:0.7-groovy-1.8'
     }
 }
