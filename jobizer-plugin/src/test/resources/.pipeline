@@ -1,2 +1,2 @@
-job "One job", "Two job"
+job 'test-jobsdsl'
 run "build-flow"
