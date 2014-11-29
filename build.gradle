@@ -35,6 +35,7 @@ subprojects {
 
     codenarc {
         toolVersion = '0.22'
+        reportFormat = 'xml'
     }
     codenarcMain {
         configFile = rootProject.file("codequality/CodeNarcMain.groovy")
