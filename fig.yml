@@ -16,3 +16,5 @@ jenkins:
   expose:
     - 8080
   hostname: jenkins
+  volumes:
+    - /jobizer:/jobizer
