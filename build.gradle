@@ -30,6 +30,9 @@ subprojects {
     apply plugin: 'maven'
     apply plugin: 'codenarc'
 
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+
     codenarc {
         toolVersion = '0.22'
     }
@@ -41,5 +44,6 @@ subprojects {
         testCompile "org.testng:testng:$testngVersion"
         testCompile "org.mockito:mockito-core:$mockitoVersion"
         testCompile 'org.spockframework:spock-core:0.7-groovy-1.8'
+        compile 'org.projectlombok:lombok:1.14.8'
     }
 }
