@@ -36,6 +36,9 @@ subprojects {
     codenarc {
         toolVersion = '0.22'
     }
+    codenarcMain {
+        configFile = rootProject.file("codequality/CodeNarcMain.groovy")
+    }
 
     dependencies {
         compile     'javax.ws.rs:jsr311-api:1.1.1'
