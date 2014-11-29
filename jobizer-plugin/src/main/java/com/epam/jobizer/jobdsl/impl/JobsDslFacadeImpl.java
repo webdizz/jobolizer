@@ -1,49 +1,55 @@
 package com.epam.jobizer.jobdsl.impl;
 
-import com.epam.jobizer.jobdsl.JobsDslFacade;
-import com.google.common.collect.Sets;
+import java.io.IOException;
+import java.net.URI;
+import java.util.Set;
+
+import hudson.EnvVars;
+import hudson.model.AbstractBuild;
+import hudson.model.BuildListener;
 import javaposse.jobdsl.dsl.DslScriptLoader;
-import javaposse.jobdsl.dsl.FileJobManagement;
 import javaposse.jobdsl.dsl.GeneratedJob;
+import javaposse.jobdsl.dsl.JobManagement;
 import javaposse.jobdsl.dsl.ScriptRequest;
+import javaposse.jobdsl.plugin.JenkinsJobManagement;
+import jenkins.model.Jenkins;
 import lombok.extern.java.Log;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
+import com.epam.jobizer.jobdsl.JobsDslFacade;
+import com.google.common.collect.Sets;
 
 @Log
 public class JobsDslFacadeImpl implements JobsDslFacade {
 
+    private final BuildListener buildListener;
+    private final AbstractBuild build;
+    private final URI workspaceURI;
+
+    public JobsDslFacadeImpl(final AbstractBuild build, final BuildListener listener) throws IOException,
+            InterruptedException {
+        this.build = build;
+        this.buildListener = listener;
+        this.workspaceURI = build.getWorkspace().toURI();
+    }
+
     @Override
-    public Set<String> run(final String[] fileNames) throws IOException {
+    public Set<String> run(final String[] fileNames) throws IOException, InterruptedException {
 
-        File cwd = new File(".");
-        URL cwdURL = cwd.toURI().toURL();
+        EnvVars env = build.getEnvironment(buildListener);
+        env.putAll(build.getBuildVariables());
 
-        log.info("========= CWD path is $cwdURL.file ===========");
-
-        final FileJobManagement jm = new FileJobManagement(cwd);
-        jm.getParameters().putAll(System.getenv());
-        Properties properties = System.getProperties();
-        Set<Map.Entry<Object, Object>> props = properties.entrySet();
-
-        for (Map.Entry<Object, Object> str : props) {
-            jm.getParameters().put(str.getKey().toString(), str.getValue().toString());
-        }
+        final JobManagement jm = new JenkinsJobManagement(buildListener.getLogger(), env, build);
 
         Set<String> jobs = Sets.newHashSet();
         for (String fileName : fileNames) {
-            ScriptRequest request = new ScriptRequest(fileName, null, cwdURL, false);
+            ScriptRequest request = new ScriptRequest(fileName, null, this.workspaceURI.toURL(), false);
             Set<GeneratedJob> generatedItems = DslScriptLoader.runDslEngine(request, jm);
-
             for (GeneratedJob job : generatedItems) {
-                jobs.add(job.getJobName());
+                log.info("Job with name " + job.getJobName() + " created");
             }
+
         }
+        Jenkins.getInstance().rebuildDependencyGraph();
 
         return jobs;
     }

@@ -27,7 +27,7 @@ public class JobConfigurationBuilder extends Builder {
         boolean result = false;
         if (pipeLine.exists()) {
             log.info("Is about to start pipeline");
-            new PipelineDsl(new JobsDslFacadeImpl()).execute(pipeLine);
+            new PipelineDsl(new JobsDslFacadeImpl(build, listener)).execute(pipeLine);
             result = true;
         } else {
             log.warning("Pipeline file does not exist in directory: " + workspacePath);
