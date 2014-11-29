@@ -54,6 +54,6 @@ jenkinsPlugin {
 
 dependencies {
     jenkinsPlugins 'org.jenkinsci.plugins:job-dsl:1.17@jar',
-                   'com.cloudbees.plugins:build-flow-plugin:0.17'
+                   'com.cloudbees.plugins:build-flow-plugin:0.17@jar'
     compile 'org.jgrapht:jgrapht-jdk1.5:0.7.3'
 }
