@@ -1,35 +1,32 @@
 package com.epam.jobizer.plugin
 
-
 class PipelineDsl {
 
+    FlowInfo flowInfo
+
     def static createJobs(closure) {
-        PipelineDsl jobsDsl = new PipelineDsl()
-        closure.delegate = jobsDsl
+        PipelineDsl pipelineDsl = new PipelineDsl(new FlowInfo())
+        closure.delegate = pipelineDsl
         closure()
     }
 
+    PipelineDsl(FlowInfo flowInfo) {
+        this.flowInfo = flowInfo
+    }
 
-    def run(String buildFlow) {
 
-        println buildFlow
-
-
+    def run(String dslDir) {
+        flowInfo.setFlow(dslDir)
     }
 
     def job(String[] jobName) {
-        processingJobs(jobName)
+        flowInfo.setJobs(jobName)
     }
 
-
-    private static processingJobs(String[] jobs) {
-        def sectionStrings = ""
-
-        for (s in jobs) {
-            sectionStrings += s.toUpperCase() + "\n"
-        }
-        println sectionStrings
+    def getFlow() {
+        return  flowInfo
     }
+
 
 
 }
