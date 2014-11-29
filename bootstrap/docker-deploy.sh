@@ -7,6 +7,7 @@ CARGS="-i -t -d -p 8081:8080"
 IDFILE="/tmp/docker-jenkins.id"
 CCMD=""
 ARTIFACT="../jobizer-plugin/build/libs/jobizer.hpi"
+JSTART_TIMEOUT=120
 
 
 docker pull $IMAGE
@@ -21,7 +22,17 @@ docker run $CARGS --name $CNAME $IMAGE > $IDFILE
 JENKINS_URL="http://`docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${CNAME}`:8080"
 
 echo "Waiting for jenkins to load"
-sleep 30
+HTTP_STATUS="000"
+timer=0
+until [ $HTTP_STATUS -eq 200 ]; do
+	if [ $timer -ge $JSTART_TIMEOUT ]; then
+		echo "Jenins $JENKINS_URL failed to start in $JSTART_TIMEOUT seconds"
+		exit 1
+	fi
+	sleep 5
+	HTTP_STATUS=`curl -s -o /dev/null -w "%{http_code}" ${JENKINS_URL}`
+	timer +=5
+done
 
 echo "Getting jenkins-cli.jar"
 rm -f ./jenkins-cli.jar || true
