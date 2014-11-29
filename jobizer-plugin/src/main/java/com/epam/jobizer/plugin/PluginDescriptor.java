@@ -1,0 +1,20 @@
+package com.epam.jobizer.plugin;
+
+import hudson.Extension;
+import hudson.model.Descriptor;
+import hudson.tasks.Builder;
+import jenkins.YesNoMaybe;
+import lombok.extern.java.Log;
+
+@Extension(dynamicLoadable = YesNoMaybe.YES)
+@Log
+public class PluginDescriptor extends Descriptor<Builder> {
+
+    public PluginDescriptor() {
+        super(JobConfigurationBuilder.class);
+    }
+
+    public String getDisplayName() {
+        return "Treat build as code";
+    }
+}
