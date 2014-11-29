@@ -1,0 +1,38 @@
+subprojects {
+    // Checkstyle
+    apply plugin: 'checkstyle'
+    checkstyle {
+        ignoreFailures = true
+        configFile = rootProject.file('codequality/checkstyle.xml')
+        toolVersion = '5.9'
+    }
+
+    // FindBugs
+    apply plugin: 'findbugs'
+    findbugs {
+        ignoreFailures = true
+        toolVersion = '3.0.0'
+    }
+
+    // PMD
+    apply plugin: 'pmd'
+    pmd {
+        toolVersion = '5.1.3'
+    }
+
+    // JaCoCo
+    apply plugin: "jacoco"
+    jacoco {
+        toolVersion = "0.7.2.201409121644"
+    }
+    check.dependsOn jacocoTestReport
+
+    jacocoTestReport {
+        dependsOn 'test'
+        reports {
+            xml.enabled true
+            csv.enabled false
+            html.enabled true
+        }
+    }
+}

@@ -1,0 +1,5 @@
+// Basic dependencies
+ext.slf4jApiVersion='1.7.7'
+ext.jerseyVersion='1.11'
+ext.testngVersion='6.8'
+ext.mockitoVersion='1.9.5'

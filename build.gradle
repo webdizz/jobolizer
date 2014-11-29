@@ -1,0 +1,40 @@
+// Establish version and status
+ext.githubProjectName = rootProject.name // Change if github project name is not the same as the root project's name
+
+apply from: file('dependencies.gradle')
+
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+        mavenCentral()
+    }
+    apply from: file('gradle/buildscript.gradle'), to: buildscript 
+}
+
+allprojects {
+    repositories { 
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+    }
+}
+
+apply from: file('gradle/ide.gradle')
+apply from: file('gradle/convention.gradle')
+apply from: file('gradle/maven.gradle')
+apply from: file('gradle/check.gradle')
+apply from: file('gradle/license.gradle')
+apply from: file('gradle/release.gradle')
+
+subprojects {
+    group = "com.netflix.${githubProjectName}" // TEMPLATE: Set to organization of project
+
+    dependencies {
+        compile     'javax.ws.rs:jsr311-api:1.1.1'
+        compile     "com.sun.jersey:jersey-core:$jerseyVersion"
+        compile     "org.slf4j:slf4j-api:$slf4jApiVersion"
+        testCompile "org.testng:testng:$testngVersion"
+        testCompile "org.mockito:mockito-core:$mockitoVersion"
+    }
+}
