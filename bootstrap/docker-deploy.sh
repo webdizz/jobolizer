@@ -27,6 +27,6 @@ echo "Getting jenkins-cli.jar"
 rm -f ./jenkins-cli.jar || true
 curl -s ${JENKINS_URL}/jnlpJars/jenkins-cli.jar -o ./jenkins-cli.jar
 
-echo "Installing plugin to the test jenkins ${$JENKINS_URL}"
+echo "Installing plugin to the test jenkins ${JENKINS_URL}"
 java -jar jenkins-cli.jar -s ${JENKINS_URL} install-plugin ${ARTIFACT} -deploy -restart
 echo "Plugin installed"
