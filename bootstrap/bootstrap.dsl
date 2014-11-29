@@ -9,6 +9,7 @@ job {
       scm('H/5 * * * *')
     }
     steps {
+	gradle('codenarcMain')
         gradle('jpi')
         shell('bootstrap/docker-deploy.sh')
     }
