@@ -13,8 +13,6 @@ class PipelineDsl {
     PipelineDsl(FlowInfo flowInfo) {
         this.flowInfo = flowInfo
     }
-
-
     def run(String dslDir) {
         flowInfo.setFlow(dslDir)
     }
@@ -26,7 +24,6 @@ class PipelineDsl {
     def getFlow() {
         return  flowInfo
     }
-
 
 
 }
