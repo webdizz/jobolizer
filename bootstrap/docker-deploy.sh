@@ -9,7 +9,8 @@ CCMD=""
 ARTIFACT="${WORKSPACE}/jobizer-plugin/build/libs/jobizer.hpi"
 JSTART_TIMEOUT=120
 
-docker pull $IMAGE
+echo "pulling image: $IMAGE"
+docker pull $IMAGE > /dev/null
 
 echo "Removing old containers"
 docker stop $CNAME || true
