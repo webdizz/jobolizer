@@ -1,4 +1,2 @@
- createJobs {
-            job ("One job", "Two job")
-            run ("build-flow")
-        }
+job "One job", "Two job"
+run "build-flow"

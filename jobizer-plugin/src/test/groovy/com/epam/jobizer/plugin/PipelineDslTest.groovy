@@ -1,19 +1,16 @@
 package com.epam.jobizer.plugin
 
-class PipelineDslTest extends GroovyTestCase {
+import spock.lang.Specification
 
-    void testListJobsCreate() {
-        PipelineDsl.createJobs {
-            job("One job", "Two job")
-            run("build-flow")
-        }
-    }
+class PipelineDslTest extends Specification {
 
-    void testSingleJobsCreate() {
-        PipelineDsl.createJobs {
-            job("Single Job")
-            run("build-flow")
-        }
+    def 'should execute DSL'() {
+        given:
+        File pipelineFile = new File("src/test/resources/.pipeline")
+        when:
+        def result = new PipelineDsl().execute(pipelineFile)
+        then:
+        null == result
     }
 
 }

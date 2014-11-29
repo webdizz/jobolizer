@@ -2,37 +2,19 @@ package com.epam.jobizer.plugin
 
 class PipelineDsl {
 
-    FlowInfo flowInfo
+    def execute(final File pipelineFile) {
+        String dsl = pipelineFile.getText()
+        Script dslScript = new GroovyShell().parse(dsl)
 
-    def static createJobs(closure) {
-        PipelineDsl pipelineDsl = new PipelineDsl(new FlowInfo())
-        closure.delegate = pipelineDsl
-        closure()
-    }
+        dslScript.metaClass.methodMissing = { String methodName, args ->
+            if ("job".equals(methodName)) {
+                println "Args for job creation ${args}"
+            } else if ("run".equals(methodName)) {
+                println "Args to run build flow ${args}"
+            }
+        }
 
-    PipelineDsl(FlowInfo flowInfo) {
-        this.flowInfo = flowInfo
+        dslScript.run()
     }
-    def run(String dslDir) {
-        println dslDir
-        flowInfo.setFlow(dslDir)
-    }
-
-    def job(String[] jobName) {
-        println jobName.toString()
-        flowInfo.setJobs(jobName)
-    }
-
-    def getFlow() {
-        return  flowInfo
-    }
-
-    static ExpandoMetaClass createEMC(Class clazz, Closure cl) {
-        ExpandoMetaClass emc = new ExpandoMetaClass(clazz, false)
-        cl(emc)
-        emc.initialize()
-        return emc
-    }
-
 
 }
