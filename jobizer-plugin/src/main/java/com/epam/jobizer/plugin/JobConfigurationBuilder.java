@@ -10,6 +10,9 @@ import hudson.model.BuildListener;
 import hudson.tasks.Builder;
 import lombok.extern.java.Log;
 
+import com.epam.jobizer.jobdsl.JobsDslFacade;
+import com.epam.jobizer.jobdsl.impl.JobsDslFacadeImpl;
+
 @Log
 public class JobConfigurationBuilder extends Builder {
 
@@ -24,6 +27,8 @@ public class JobConfigurationBuilder extends Builder {
         boolean result = false;
         if (pipeLine.exists()) {
             log.info("Is about to start pipeline");
+            JobsDslFacade facade = new JobsDslFacadeImpl();
+            facade.run(new String[]{"jobs"});
             result = true;
         } else {
             log.warning("Pipeline file does not exist in directory: " + workspacePath);
