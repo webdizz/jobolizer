@@ -7,5 +7,6 @@ job {
     }
     steps {
         gradle('jpi')
+        shell('bootstrap/docker-deploy.sh')
     }
 }
