@@ -1,0 +1,37 @@
+def gitUrl = 'git://github.com/jenkinsci/job-dsl-plugin.git'
+
+job {
+    // No template, not needed
+    name 'test-job.1'
+    scm {
+        git(gitUrl)
+    }
+    // No Trigger
+    authorization {
+        // Limit builds to just jack and jill
+        permission(Permissions.ItemBuild, 'jill')
+        permission(Permissions.ItemBuild, 'jack')
+    }
+    steps {
+        maven('release')
+        shell('cleanup.sh')
+    }
+}
+
+job {
+    // No template, not needed
+    name 'test-job.2'
+    scm {
+        git(gitUrl)
+    }
+    // No Trigger
+    authorization {
+        // Limit builds to just jack and jill
+        permission(Permissions.ItemBuild, 'jill')
+        permission(Permissions.ItemBuild, 'jack')
+    }
+    steps {
+        maven('release')
+        shell('cleanup.sh')
+    }
+}
