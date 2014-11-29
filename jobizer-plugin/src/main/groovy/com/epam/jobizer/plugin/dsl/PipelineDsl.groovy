@@ -5,9 +5,9 @@ import com.epam.jobizer.jobdsl.JobsDslFacade
 
 class PipelineDsl {
 
-    private JobsDslFacade jobFacade;
+    private JobsDslFacade jobFacade
 
-    private FlowExecutable flowExecutor;
+    private FlowExecutable flowExecutor
 
     PipelineDsl(final JobsDslFacade jobFacade, final FlowExecutable flowExecutor) {
         this.jobFacade = jobFacade
@@ -15,14 +15,14 @@ class PipelineDsl {
     }
 
     def execute(final File pipelineFile) {
-        String dsl = pipelineFile.getText()
+        String dsl = pipelineFile.text
         Script dslScript = new GroovyShell().parse(dsl)
 
         dslScript.metaClass.methodMissing = { String methodName, args ->
-            if ("job".equals(methodName)) {
-                String[] jobFiles = args.collect { it.toString() }
+            if ('job'.equals(methodName)) {
+                String[] jobFiles = args*.toString()
                 jobFacade.run(jobFiles)
-            } else if ("run".equals(methodName)) {
+            } else if ('run'.equals(methodName)) {
                 String buildFlowPath = args[0]
                 flowExecutor.run(buildFlowPath)
             }
