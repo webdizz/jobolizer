@@ -12,6 +12,8 @@ class PipelineDsl {
 
     def run(String buildFlow) {
         println buildFlow
+
+
     }
 
     def job(String[] jobName) {
