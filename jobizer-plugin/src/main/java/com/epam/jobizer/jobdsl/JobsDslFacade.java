@@ -4,5 +4,5 @@ import java.io.IOException;
 import java.util.Set;
 
 public interface JobsDslFacade {
-    Set<String> run(final String[] fileNames) throws IOException, InterruptedException;
+    Set<String> run(String[] fileNames) throws IOException, InterruptedException;
 }
