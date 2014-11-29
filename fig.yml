@@ -1,0 +1,18 @@
+nginx:
+  image: webdizz/nginx
+  ports:
+    - 80:80
+  links:
+    - jenkins:jenkins
+  volumes:
+    - env/nginx/nginx.conf:/usr/local/nginx/conf/nginx.conf
+    - env/nginx/includes:/usr/local/nginx/conf/includes
+    - env/nginx/sites-enabled:/usr/local/nginx/conf/sites-enabled
+  environment:
+    - ROOT_PASS=123456
+
+jenkins:
+  image: webdizz/jenkins
+  expose:
+    - 8080
+  hostname: jenkins
