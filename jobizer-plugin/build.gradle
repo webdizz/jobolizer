@@ -15,7 +15,7 @@ apply plugin: 'org.jenkins-ci.jpi'
 description = 'Jenkins plugin to programmatic create builds from inside Jenkins.'
 
 jenkinsPlugin {
-    coreVersion = '1.509.3'
+    coreVersion = '1.591'
     displayName = 'Jobizer - DSL to treat build like a code'
     gitHubUrl = 'https://github.com/webdizz/jobizer'
     maskClasses = 'groovy.grape'
@@ -52,7 +52,6 @@ jenkinsPlugin {
     }
 }
 
-
 dependencies {
-
+    jenkinsPlugins 'org.jenkinsci.plugins:job-dsl:1.17@jar'
 }
