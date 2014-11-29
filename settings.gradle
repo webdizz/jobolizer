@@ -1,1 +1,3 @@
-rootProject.name='gradle-template-multi' // TEMPLATE: Change this
+rootProject.name='jobizer'
+
+include ':jobizer-plugin'

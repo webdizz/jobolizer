@@ -1,5 +1,4 @@
-// Establish version and status
-ext.githubProjectName = rootProject.name // Change if github project name is not the same as the root project's name
+ext.githubProjectName = rootProject.name
 
 apply from: file('dependencies.gradle')
 
@@ -21,14 +20,19 @@ allprojects {
 }
 
 apply from: file('gradle/ide.gradle')
-apply from: file('gradle/convention.gradle')
-apply from: file('gradle/maven.gradle')
-apply from: file('gradle/check.gradle')
-apply from: file('gradle/license.gradle')
-apply from: file('gradle/release.gradle')
+//apply from: file('gradle/convention.gradle')
+//apply from: file('gradle/check.gradle')
 
 subprojects {
-    group = "com.netflix.${githubProjectName}" // TEMPLATE: Set to organization of project
+    group = "com.epam.${githubProjectName}"
+    apply plugin: 'java'
+    apply plugin: 'groovy'
+    apply plugin: 'maven'
+    apply plugin: 'codenarc'
+
+    codenarc {
+        toolVersion = '0.22'
+    }
 
     dependencies {
         compile     'javax.ws.rs:jsr311-api:1.1.1'

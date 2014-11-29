@@ -1,0 +1,58 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            url 'http://repo.jenkins-ci.org/releases/'
+        }
+    }
+    dependencies {
+        classpath 'org.jenkins-ci.tools:gradle-jpi-plugin:0.7.1'
+    }
+}
+
+apply plugin: 'org.jenkins-ci.jpi'
+
+description = 'Jenkins plugin to programmatic create builds from inside Jenkins.'
+
+jenkinsPlugin {
+    coreVersion = '1.509.3'
+    displayName = 'Jobizer - DSL to treat build like a code'
+    gitHubUrl = 'https://github.com/webdizz/jobizer'
+    maskClasses = 'groovy.grape'
+    compatibleSinceVersion = '1.20'
+    pluginFirstClassLoader = true
+    developers {
+        developer {
+            id 'Alex'
+            name 'Alex Sholokh'
+        }
+        developer {
+            id 'webdizz'
+            name 'Izzet Mustafaiev'
+            email 'izzet@mustafaiev.com'
+        }
+        developer {
+            id 'fevz'
+            name 'Fevzi Anifeiev'
+        }
+        developer {
+            id 'zinur'
+            name 'Zinur Mustafaiev'
+            email 'tair@mustafaiev.com'
+        }
+        developer {
+            id 'max'
+            name 'Max Bilenko'
+        }
+        developer {
+            id 'tair'
+            name 'Tair Mustafaiev'
+            email 'tair@mustafaiev.com'
+        }
+    }
+}
+
+
+dependencies {
+
+}
