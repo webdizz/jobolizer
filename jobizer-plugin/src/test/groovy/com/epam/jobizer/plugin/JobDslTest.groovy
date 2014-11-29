@@ -6,14 +6,14 @@ class JobDslTest extends GroovyTestCase {
     void testListJobsCreate() {
         JobDsl.createJobs {
             jobs "One job", "Two job"
-            create
+            run
         }
     }
 
     void testSingleJobsCreate() {
         JobDsl.createJobs {
             job "Single Job"
-            create
+            run
         }
     }
 

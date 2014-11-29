@@ -21,7 +21,7 @@ class JobDsl {
         this.job = jobNames
     }
 
-    def getCreate() {
+    def getRun() {
         processingJobs(this)
     }
 
@@ -36,8 +36,6 @@ class JobDsl {
         if(jobs.job != null) {
             sectionStrings += jobs.job.toUpperCase() + "\n"
         }
-
-//        def fileContents = new File('/path/to/file').text
 
         println sectionStrings
     }
