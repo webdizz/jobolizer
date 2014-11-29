@@ -4,13 +4,13 @@ import spock.lang.Specification
 
 class DslExecutorTest extends Specification {
 
-    def 'should execute DSL from file' (){
+    def 'should execute DSL from file'() {
         when:
+        File pipelineFile = new File("src/test/resources/.pipeline")
         Binding binding = new Binding();
-        binding.setVariable("foo", new Integer(2));
         GroovyShell shell = new GroovyShell(binding);
-        Object value = shell.evaluate("println 'Hello World!'; x = 123; return foo * 10");
+        Object value = shell.evaluate(pipelineFile.getText());
         then:
-        true
+        null != value
     }
 }

@@ -1,12 +1,14 @@
 package com.epam.jobizer.jobdsl.impl;
 
-import com.epam.jobizer.jobdsl.JobsDslFacade;
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+
+import java.util.Set;
+
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import java.util.Set;
+import com.epam.jobizer.jobdsl.JobsDslFacade;
 
 @Ignore
 public class JobsDslFacadeImplTest {
@@ -20,7 +22,7 @@ public class JobsDslFacadeImplTest {
 
     @Test
     public void shouldRun() throws Exception {
-            Set<String> jobs = facade.run(new String[] { "test-jobsdsl" });
-            Assert.assertEquals("Jobs count should be as expected", 2, jobs.size());
+        Set<String> jobs = facade.run(new String[]{"test-jobsdsl"});
+        assertEquals("Jobs count should be as expected", 2, jobs.size());
     }
 }
