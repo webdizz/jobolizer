@@ -21,6 +21,7 @@ public class JobConfigurationBuilder extends Builder {
         // Since this is a dummy, we just say 'hello world' and call that a build.
 
         // This also shows how you can consult the global configuration of the builder
+
         return true;
     }
 
