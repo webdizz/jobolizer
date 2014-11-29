@@ -1,5 +1,8 @@
 package com.epam.jobizer.plugin;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.kohsuke.stapler.DataBoundConstructor;
 import hudson.Launcher;
 import hudson.model.AbstractBuild;
@@ -15,13 +18,17 @@ public class JobConfigurationBuilder extends Builder {
     }
 
     @Override
-    public boolean perform(final AbstractBuild build, final Launcher launcher, final BuildListener listener) {
-        log.info("Hello from Jenkins");
-        // This is where you 'build' the project.
-        // Since this is a dummy, we just say 'hello world' and call that a build.
-
-        // This also shows how you can consult the global configuration of the builder
-        return true;
+    public boolean perform(final AbstractBuild build, final Launcher launcher, final BuildListener listener) throws IOException, InterruptedException {
+        String workspacePath = build.getWorkspace().toURI().getPath();
+        File pipeLine = new File(workspacePath + "/.pipeline");
+        boolean result = false;
+        if (pipeLine.exists()) {
+            log.info("Is about to start pipeline");
+            result = true;
+        } else {
+            log.warning("Pipeline file does not exist in directory: " + workspacePath);
+        }
+        return result;
     }
 
 }
