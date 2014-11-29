@@ -36,7 +36,7 @@ public class JobExecutionConfigurationBuilder extends Builder {
             log.info("Is about to start pipeline");
             JobCreatable jobFacade = new JobCreator(build, listener, uri);
             try {
-                new Pipeline(jobFacade, new FlowExecutor()).execute(pipeLine);
+                new Pipeline(jobFacade, new FlowExecutor(build,listener)).execute(pipeLine);
                 result = true;
             } catch (FlowExecutionException fee) {
                 log.log(Level.SEVERE, "Unable to perform execution of build flow", fee);
