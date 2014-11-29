@@ -5,6 +5,9 @@ job {
     scm {
         git(gitUrl,'master')
     }
+    triggers {
+      scm('H/5 * * * *')
+    }
     steps {
         gradle('jpi')
         shell('bootstrap/docker-deploy.sh')
