@@ -20,8 +20,8 @@ job {
       scm('H/5 * * * *')
     }
     steps {
-	gradle('codenarcMain')
-        gradle('jpi')
+	gradle('clean codenarcMain')
+        gradle('clean jpi')
         shell('bootstrap/docker-deploy.sh')
     }
 }
