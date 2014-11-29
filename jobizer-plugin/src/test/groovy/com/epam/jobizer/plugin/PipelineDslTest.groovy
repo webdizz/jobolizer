@@ -1,5 +1,6 @@
 package com.epam.jobizer.plugin
 
+import com.epam.jobizer.plugin.dsl.PipelineDsl
 import spock.lang.Specification
 
 class PipelineDslTest extends Specification {

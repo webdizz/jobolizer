@@ -1,4 +1,4 @@
-package com.epam.jobizer.plugin
+package com.epam.jobizer.plugin.dsl
 
 class PipelineDsl {
 
