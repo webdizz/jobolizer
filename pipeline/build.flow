@@ -1,7 +1,2 @@
 build("exec-build")
-build("exec-unit-test")
-parallel (
-    { 
-    	build("exec-backend-test")
-		build("exec-ui-test")
-	}
+build("exec-test")
