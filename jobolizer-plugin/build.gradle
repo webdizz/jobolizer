@@ -16,8 +16,8 @@ description = 'Jenkins plugin to programmatic create builds from inside Jenkins.
 
 jenkinsPlugin {
     coreVersion = '1.591'
-    displayName = 'Jobizer - DSL to treat build like a code'
-    gitHubUrl = 'https://github.com/webdizz/jobizer'
+    displayName = 'Jobolizer - DSL to treat build like a code'
+    gitHubUrl = 'https://github.com/webdizz/jobolizer'
     maskClasses = 'groovy.grape'
     compatibleSinceVersion = '1.20'
     pluginFirstClassLoader = true
