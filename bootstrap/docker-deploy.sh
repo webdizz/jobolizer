@@ -6,7 +6,7 @@ CNAME="jenkins-test"
 CARGS="-i -t -d -p 8081:8080"
 IDFILE="/tmp/docker-jenkins.id"
 CCMD=""
-ARTIFACT="${WORKSPACE}/jobolizer-plugin/build/libs/jobizer.hpi"
+ARTIFACT="${WORKSPACE}/jobolizer-plugin/build/libs/jobolizer.hpi"
 JSTART_TIMEOUT=120
 
 echo "pulling image: $IMAGE"
