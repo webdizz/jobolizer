@@ -1,2 +1,2 @@
 job 'test-jobsdsl'
-run "build-flow"
+run 'build-flow'

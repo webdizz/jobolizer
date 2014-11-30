@@ -1,4 +1,4 @@
-package com.epam.jobizer.job;
+package com.epam.jenkins.plugin.jobolizer.job;
 
 import java.io.IOException;
 import java.net.URI;

@@ -1,8 +1,6 @@
-package com.epam.jobizer.plugin
-
-import com.epam.jobizer.flow.FlowExecutable
-import com.epam.jobizer.job.JobCreator
-import com.epam.jobizer.plugin.dsl.Pipeline
+package com.epam.jenkins.plugin.jobolizer.dsl
+import com.epam.jenkins.plugin.jobolizer.flow.FlowExecutable
+import com.epam.jenkins.plugin.jobolizer.job.JobCreator
 import spock.lang.Specification
 
 class PipelineTest extends Specification {

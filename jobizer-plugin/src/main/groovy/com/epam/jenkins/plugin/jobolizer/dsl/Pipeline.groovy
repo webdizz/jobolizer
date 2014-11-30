@@ -1,7 +1,7 @@
-package com.epam.jobizer.plugin.dsl
+package com.epam.jenkins.plugin.jobolizer.dsl
 
-import com.epam.jobizer.flow.FlowExecutable
-import com.epam.jobizer.job.JobCreatable
+import com.epam.jenkins.plugin.jobolizer.flow.FlowExecutable
+import com.epam.jenkins.plugin.jobolizer.job.JobCreatable
 
 class Pipeline {
 

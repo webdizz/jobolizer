@@ -1,10 +1,12 @@
-package com.epam.jobizer.plugin;
+package com.epam.jenkins.plugin.jobolizer;
 
 import hudson.Extension;
 import hudson.model.Descriptor;
 import hudson.tasks.Builder;
 import jenkins.YesNoMaybe;
 import lombok.extern.java.Log;
+
+import com.epam.jenkins.plugin.jobolizer.JobExecutionConfigurationBuilder;
 
 @Extension(dynamicLoadable = YesNoMaybe.YES)
 @Log

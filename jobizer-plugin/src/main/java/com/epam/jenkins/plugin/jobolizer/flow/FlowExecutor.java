@@ -1,4 +1,4 @@
-package com.epam.jobizer.flow;
+package com.epam.jenkins.plugin.jobolizer.flow;
 
 import lombok.extern.java.Log;
 

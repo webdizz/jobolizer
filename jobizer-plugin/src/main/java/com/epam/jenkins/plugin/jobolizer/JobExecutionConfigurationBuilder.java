@@ -1,4 +1,4 @@
-package com.epam.jobizer.plugin;
+package com.epam.jenkins.plugin.jobolizer;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,12 +12,12 @@ import hudson.model.BuildListener;
 import hudson.tasks.Builder;
 import lombok.extern.java.Log;
 
-import com.epam.jobizer.flow.FlowExecutionException;
-import com.epam.jobizer.flow.FlowExecutor;
-import com.epam.jobizer.job.JobCreatable;
-import com.epam.jobizer.job.JobCreationException;
-import com.epam.jobizer.job.JobCreator;
-import com.epam.jobizer.plugin.dsl.Pipeline;
+import com.epam.jenkins.plugin.jobolizer.flow.FlowExecutionException;
+import com.epam.jenkins.plugin.jobolizer.flow.FlowExecutor;
+import com.epam.jenkins.plugin.jobolizer.job.JobCreatable;
+import com.epam.jenkins.plugin.jobolizer.job.JobCreationException;
+import com.epam.jenkins.plugin.jobolizer.job.JobCreator;
+import com.epam.jenkins.plugin.jobolizer.dsl.Pipeline;
 
 @Log
 public class JobExecutionConfigurationBuilder extends Builder {
