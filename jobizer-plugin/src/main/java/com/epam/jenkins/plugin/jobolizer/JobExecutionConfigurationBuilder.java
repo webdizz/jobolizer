@@ -62,9 +62,7 @@ public class JobExecutionConfigurationBuilder extends Builder {
     }
 
     private FlowExecutable createFlowExecutable(final AbstractBuild build, final BuildListener listener) throws IOException {
-        BuildFlow buildFlow = new BuildFlow(build.getParent().getParent(), "test");
-        FlowRun flowRun = new FlowRun(buildFlow);
-        return new FlowExecutor(flowRun, listener);
+        return new FlowExecutor(build, listener);
     }
 
 }
