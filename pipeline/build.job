@@ -2,6 +2,6 @@ def gitUrl = 'https://github.com/spring-projects/spring-framework.git'
 job {
     name 'exec-build'
     steps {
-	exec("echo 'Hello from build job'")
+	exec('echo Hello from build job')
     }
 }
