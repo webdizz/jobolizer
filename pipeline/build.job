@@ -3,6 +3,12 @@ job {
     name 'exec-build'
     scm {
         git(gitUrl,'master')
+        extensions {
+            'hudson.plugins.git.extensions.impl.PerBuildTag'(){
+                name('jobolizer.ci')
+                email('jobolizer.ci@epam.com')
+            }
+        }
     }
     triggers {
       scm('H/5 * * * *')
