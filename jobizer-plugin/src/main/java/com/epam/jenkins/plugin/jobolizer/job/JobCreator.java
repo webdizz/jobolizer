@@ -29,7 +29,7 @@ public class JobCreator implements JobCreatable {
         this.workspaceURI = uri;
     }
 
-    public void run(final String[] fileNames) {
+    public void run(final String[] fileNames) throws JobCreationException {
         try {
             EnvVars env = build.getEnvironment(buildListener);
             env.putAll(build.getBuildVariables());
