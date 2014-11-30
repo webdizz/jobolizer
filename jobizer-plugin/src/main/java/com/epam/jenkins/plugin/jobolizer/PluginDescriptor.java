@@ -6,8 +6,6 @@ import hudson.tasks.Builder;
 import jenkins.YesNoMaybe;
 import lombok.extern.java.Log;
 
-import com.epam.jenkins.plugin.jobolizer.JobExecutionConfigurationBuilder;
-
 @Extension(dynamicLoadable = YesNoMaybe.YES)
 @Log
 public class PluginDescriptor extends Descriptor<Builder> {
@@ -17,9 +15,6 @@ public class PluginDescriptor extends Descriptor<Builder> {
     }
 
     public String getDisplayName() {
-
-
-
         return "Treat build as code";
     }
 }
