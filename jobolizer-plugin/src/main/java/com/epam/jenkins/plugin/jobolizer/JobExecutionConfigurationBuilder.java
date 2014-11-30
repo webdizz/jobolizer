@@ -1,6 +1,10 @@
 package com.epam.jenkins.plugin.jobolizer;
 
-import java.io.File;
+import hudson.Launcher;
+import hudson.model.BuildListener;
+import hudson.model.AbstractBuild;
+import hudson.tasks.Builder;
+
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Files;
@@ -8,16 +12,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.Level;
 
-import org.kohsuke.stapler.DataBoundConstructor;
-
-import hudson.Launcher;
-import hudson.model.AbstractBuild;
-import hudson.model.BuildListener;
-import hudson.tasks.Builder;
 import lombok.extern.java.Log;
 
-import com.cloudbees.plugins.flow.BuildFlow;
-import com.cloudbees.plugins.flow.FlowRun;
+import org.kohsuke.stapler.DataBoundConstructor;
+
 import com.epam.jenkins.plugin.jobolizer.dsl.Pipeline;
 import com.epam.jenkins.plugin.jobolizer.flow.FlowExecutable;
 import com.epam.jenkins.plugin.jobolizer.flow.FlowExecutionException;

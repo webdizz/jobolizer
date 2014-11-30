@@ -1,24 +1,22 @@
 package com.epam.jenkins.plugin.jobolizer.flow;
 
+import hudson.model.BuildListener;
+import hudson.model.AbstractBuild;
+
 import java.io.IOException;
 import java.util.Random;
 
-import hudson.model.AbstractBuild;
-import hudson.model.BuildListener;
-import lombok.extern.java.Log;
-
-import com.cloudbees.plugins.flow.BuildFlow;
 import com.cloudbees.plugins.flow.FlowDSL;
+import com.cloudbees.plugins.flow.BuildFlow;
 import com.cloudbees.plugins.flow.FlowRun;
 
-@Log
 public class FlowExecutor implements FlowExecutable {
 
-    private final AbstractBuild build;
+    private final AbstractBuild<?, ?> build;
 
     private final BuildListener listener;
 
-    public FlowExecutor(final AbstractBuild build, final BuildListener listener) {
+    public FlowExecutor(final AbstractBuild<?, ?> build, final BuildListener listener) {
         this.build = build;
         this.listener = listener;
     }
