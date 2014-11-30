@@ -1,4 +1,4 @@
-jobizer
+jobolizer
 =======
 
 Jenkins plugin to treat build as code
