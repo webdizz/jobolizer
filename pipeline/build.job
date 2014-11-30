@@ -2,11 +2,12 @@ def gitUrl = 'https://github.com/spring-projects/spring-framework.git'
 job {
     name 'exec-build'
     scm {
-        git(gitUrl,'master')
-        extensions {
-            'hudson.plugins.git.extensions.impl.PerBuildTag'(){
-                name('jobolizer.ci')
-                email('jobolizer.ci@epam.com')
+        git(gitUrl,'master'){
+            configure { node ->
+                'hudson.plugins.git.extensions.impl.UserIdentity'(){
+                    name('jobolizer.ci')
+                    email('jobolizer.ci@epam.com')
+                }
             }
         }
     }
