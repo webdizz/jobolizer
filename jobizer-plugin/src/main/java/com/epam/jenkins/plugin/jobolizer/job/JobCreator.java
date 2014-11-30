@@ -21,10 +21,10 @@ import lombok.extern.java.Log;
 public class JobCreator implements JobCreatable {
 
     private final BuildListener buildListener;
-    private final AbstractBuild build;
+    private final AbstractBuild<?, ?> build;
     private final URI workspaceURI;
 
-    public JobCreator(final AbstractBuild build, final BuildListener listener, final URI uri) {
+    public JobCreator(final AbstractBuild<?, ?> build, final BuildListener listener, final URI uri) {
         this.build = build;
         this.buildListener = listener;
         this.workspaceURI = uri;

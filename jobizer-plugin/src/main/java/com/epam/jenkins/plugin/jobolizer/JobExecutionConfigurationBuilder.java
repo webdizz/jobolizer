@@ -3,9 +3,13 @@ package com.epam.jenkins.plugin.jobolizer;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.logging.Level;
 
 import org.kohsuke.stapler.DataBoundConstructor;
+
 import hudson.Launcher;
 import hudson.model.AbstractBuild;
 import hudson.model.BuildListener;
@@ -30,17 +34,18 @@ public class JobExecutionConfigurationBuilder extends Builder {
     }
 
     @Override
-    public boolean perform(final AbstractBuild build, final Launcher launcher, final BuildListener listener) throws IOException, InterruptedException {
+    public boolean perform(final AbstractBuild<?, ?> build, final Launcher launcher, final BuildListener listener) throws IOException, InterruptedException {
         URI uri = build.getWorkspace().toURI();
         String workspacePath = uri.getPath();
-        File pipeLine = new File(workspacePath + "/.pipeline");
+        Path pipeLinePath = Paths.get(workspacePath, "/.pipeline");
+        
         boolean result = false;
-        if (pipeLine.exists()) {
+        if (Files.exists(pipeLinePath)) {
             log.info("Is about to start pipeline");
             try {
                 JobCreatable jobCreator = createJobCreatable(build, listener, uri);
                 FlowExecutable flowExecutor = createFlowExecutable(build, listener);
-                execute(pipeLine, jobCreator, flowExecutor);
+                execute(pipeLinePath, jobCreator, flowExecutor);
                 result = true;
             } catch (FlowExecutionException fee) {
                 log.log(Level.SEVERE, "Unable to perform execution of build flow", fee);
@@ -53,15 +58,15 @@ public class JobExecutionConfigurationBuilder extends Builder {
         return result;
     }
 
-    private void execute(final File pipeLine, final JobCreatable jobCreator, final FlowExecutable flowExecutor) {
+    private void execute(final Path pipeLine, final JobCreatable jobCreator, final FlowExecutable flowExecutor) {
         new Pipeline(jobCreator, flowExecutor).execute(pipeLine);
     }
 
-    private JobCreatable createJobCreatable(final AbstractBuild build, final BuildListener listener, final URI uri) {
+    private JobCreatable createJobCreatable(final AbstractBuild<?, ?> build, final BuildListener listener, final URI uri) {
         return new JobCreator(build, listener, uri);
     }
 
-    private FlowExecutable createFlowExecutable(final AbstractBuild build, final BuildListener listener) throws IOException {
+    private FlowExecutable createFlowExecutable(final AbstractBuild<?, ?> build, final BuildListener listener) throws IOException {
         return new FlowExecutor(build, listener);
     }
 
