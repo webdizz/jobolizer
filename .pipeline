@@ -1,2 +1,2 @@
-job 'pipeline/test.job', 'pipeline/build.job'
+job 'pipeline/build.job', 'pipeline/test.job'
 run 'pipeline/build.flow'

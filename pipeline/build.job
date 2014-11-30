@@ -1,7 +1,6 @@
 def gitUrl = 'https://github.com/spring-projects/spring-framework.git'
 job {
     name 'exec-build'
-    jdk('java 1.8')
     scm {
         git(gitUrl,'master')
     }
