@@ -23,8 +23,6 @@ allprojects {
 }
 
 apply from: file('gradle/ide.gradle')
-//apply from: file('gradle/convention.gradle')
-//apply from: file('gradle/check.gradle')
 
 subprojects {
     group = "com.epam.${githubProjectName}"
