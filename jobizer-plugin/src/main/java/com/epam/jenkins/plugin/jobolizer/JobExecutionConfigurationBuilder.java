@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.logging.Level;
 
+import com.cloudbees.plugins.flow.BuildFlow;
+import com.cloudbees.plugins.flow.FlowRun;
 import org.kohsuke.stapler.DataBoundConstructor;
 import hudson.Launcher;
 import hudson.model.AbstractBuild;
@@ -36,7 +38,9 @@ public class JobExecutionConfigurationBuilder extends Builder {
             log.info("Is about to start pipeline");
             JobCreatable jobFacade = new JobCreator(build, listener, uri);
             try {
-                new Pipeline(jobFacade, new FlowExecutor()).execute(pipeLine);
+                BuildFlow buildFlow = new BuildFlow(build.getParent().getParent(), "test");
+                FlowRun flowRun = new FlowRun(buildFlow);
+                new Pipeline(jobFacade, new FlowExecutor(flowRun,listener )).execute(pipeLine);
                 result = true;
             } catch (FlowExecutionException fee) {
                 log.log(Level.SEVERE, "Unable to perform execution of build flow", fee);
