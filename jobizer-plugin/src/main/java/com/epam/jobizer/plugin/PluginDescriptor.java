@@ -11,7 +11,7 @@ import lombok.extern.java.Log;
 public class PluginDescriptor extends Descriptor<Builder> {
 
     public PluginDescriptor() {
-        super(JobConfigurationBuilder.class);
+        super(JobExecutionConfigurationBuilder.class);
     }
 
     public String getDisplayName() {

@@ -1,26 +1,29 @@
 package com.epam.jobizer.plugin;
 
-import com.epam.jobizer.flow.FlowExecutionException;
-import com.epam.jobizer.flow.FlowExecutor;
-import com.epam.jobizer.jobdsl.JobsDslFacade;
-import com.epam.jobizer.plugin.dsl.PipelineDsl;
-import hudson.Launcher;
-import hudson.model.AbstractBuild;
-import hudson.model.BuildListener;
-import hudson.tasks.Builder;
-import lombok.extern.java.Log;
-import org.kohsuke.stapler.DataBoundConstructor;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.util.logging.Level;
 
+import org.kohsuke.stapler.DataBoundConstructor;
+import hudson.Launcher;
+import hudson.model.AbstractBuild;
+import hudson.model.BuildListener;
+import hudson.tasks.Builder;
+import lombok.extern.java.Log;
+
+import com.epam.jobizer.flow.FlowExecutionException;
+import com.epam.jobizer.flow.FlowExecutor;
+import com.epam.jobizer.job.JobCreatable;
+import com.epam.jobizer.job.JobCreationException;
+import com.epam.jobizer.job.JobCreator;
+import com.epam.jobizer.plugin.dsl.Pipeline;
+
 @Log
-public class JobConfigurationBuilder extends Builder {
+public class JobExecutionConfigurationBuilder extends Builder {
 
     @DataBoundConstructor
-    public JobConfigurationBuilder() {
+    public JobExecutionConfigurationBuilder() {
     }
 
     @Override
@@ -31,12 +34,14 @@ public class JobConfigurationBuilder extends Builder {
         boolean result = false;
         if (pipeLine.exists()) {
             log.info("Is about to start pipeline");
-            JobsDslFacade jobFacade = new JobsDslFacade(build, listener, uri);
+            JobCreatable jobFacade = new JobCreator(build, listener, uri);
             try {
-                new PipelineDsl(jobFacade, new FlowExecutor()).execute(pipeLine);
+                new Pipeline(jobFacade, new FlowExecutor()).execute(pipeLine);
                 result = true;
             } catch (FlowExecutionException fee) {
                 log.log(Level.SEVERE, "Unable to perform execution of build flow", fee);
+            } catch (JobCreationException jce) {
+                log.log(Level.SEVERE, "Unable to create job(s) for pipeline", jce);
             }
         } else {
             log.warning("Pipeline file does not exist in directory: " + workspacePath);

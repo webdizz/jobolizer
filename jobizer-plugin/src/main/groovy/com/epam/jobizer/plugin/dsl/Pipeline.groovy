@@ -1,16 +1,16 @@
 package com.epam.jobizer.plugin.dsl
 
 import com.epam.jobizer.flow.FlowExecutable
-import com.epam.jobizer.jobdsl.JobsDslFacade
+import com.epam.jobizer.job.JobCreatable
 
-class PipelineDsl {
+class Pipeline {
 
-    private JobsDslFacade jobFacade
+    private JobCreatable jobsCreatable
 
     private FlowExecutable flowExecutor
 
-    PipelineDsl(final JobsDslFacade jobFacade, final FlowExecutable flowExecutor) {
-        this.jobFacade = jobFacade
+    Pipeline(final JobCreatable jobsCreatable, final FlowExecutable flowExecutor) {
+        this.jobsCreatable = jobsCreatable
         this.flowExecutor = flowExecutor
     }
 
@@ -21,7 +21,7 @@ class PipelineDsl {
         dslScript.metaClass.methodMissing = { String methodName, args ->
             if ('job'.equals(methodName)) {
                 String[] jobFiles = args*.toString()
-                jobFacade.run(jobFiles)
+                jobsCreatable.run(jobFiles)
             } else if ('run'.equals(methodName)) {
                 String buildFlowPath = args[0]
                 flowExecutor.run(buildFlowPath)
