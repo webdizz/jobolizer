@@ -10,7 +10,6 @@ public class BuildFlow extends FlowDSL {
 
     public void executeFlowScript (final AbstractBuild flowRun, final  String dsl, final  BuildListener listener) {
         executeFlowScript(flowRun, dsl, listener);
-
     }
 
 
