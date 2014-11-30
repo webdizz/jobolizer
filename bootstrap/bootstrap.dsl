@@ -6,7 +6,7 @@ job {
       project / 'properties' << 'hudson.plugins.sidebar__link.ProjectLinks' {
         links {
           'hudson.plugins.sidebar__link.LinkAction'{
-            url('ws/jobizer-plugin/build/reports/codenarc/main.html')
+            url('ws/jobolizer-plugin/build/reports/codenarc/main.html')
             text('CodeNarc')
             icon('')
           }

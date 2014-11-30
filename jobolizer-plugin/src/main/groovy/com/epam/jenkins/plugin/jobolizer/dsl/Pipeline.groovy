@@ -1,14 +1,14 @@
 package com.epam.jenkins.plugin.jobolizer.dsl
 
-import java.nio.file.Path;
-
 import com.epam.jenkins.plugin.jobolizer.flow.FlowExecutable
 import com.epam.jenkins.plugin.jobolizer.job.JobCreatable
+
+import java.nio.file.Path
 
 class Pipeline {
 
     private static final String METHOD_JOB = 'job'
-	private static final String METHOD_RUN = 'run'
+    private static final String METHOD_RUN = 'run'
 
     private JobCreatable jobsCreatable
     private FlowExecutable flowExecutor
