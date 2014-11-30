@@ -1,0 +1,5 @@
+job {
+    steps {
+        shell('echo Unit tests')
+    }
+}
